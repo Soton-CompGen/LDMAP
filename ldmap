@@ -1,0 +1,169 @@
+#!/bin/sh
+
+clear
+echo "  "
+echo "  "
+echo " L D M A P        "   
+echo "Construction of linkage disequilibrium maps from haplotype and diplotype data..."
+echo " VERSION 1.0   12/11/04  "
+MODE=0
+while [ $MODE -ge -1 -a $MODE -lt 9  ]
+do
+echo "  "
+echo "  "
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo "Enter number to select function "
+
+echo "    1             Haplotypes with SNPs - construct intermediate file  "
+
+echo "    2             Diplotypes with SNPs - construct intermediate file  "
+
+echo "    3             Construct LD map in segments from intermediate file  "
+
+echo "    4             Construct LD map from intermediate file "
+
+echo "    5             Add LDU locations to a genotype file "
+
+echo "    6             Construct intermediate file from pooled haplotype counts "
+
+echo "    7             Test HWE in genotype file and obtain allele frequencies "
+
+echo "    8             Combine two intermediate files "
+
+echo "    9             quit      "
+
+echo "  "
+
+
+read MODE
+
+while [ $MODE -ge 1 -a $MODE -lt 9 ]
+do
+        
+        if [ $MODE -eq 1 -o $MODE -eq 2 ]
+        then
+        echo  "*Define input and output files*" 
+        echo "  " 
+	echo  "Input data file is: "
+	read DATA
+	echo  "Intermediate output file is: "
+	read TERSE
+	echo  " CP file (to run the program) is: "
+	read CP
+	rm -f $CP
+        echo "Writing an executable 'cp' file........"
+        echo "ldmapper1" $DATA $TERSE $MODE >> $CP
+        chmod +x $CP
+        echo "Run this job (y/n) ?"
+        read run
+        case $run in y) /bin/sh $CP ;;
+        esac 
+        MODE=0 
+        fi
+        
+        if [ $MODE -eq 3 ]
+        then
+        TMODE=MODE 
+        echo "Construct an LDU map in overlapping segments " 
+        echo  "Job file is: "
+	read JOB
+	echo  "Intermediate (input) file is: "
+	read DATA 
+	echo  "Terse output file is: "
+	read TERSE
+	echo  "Output file is: "
+	read PROLIX
+        
+#       echo  "Accept defaults throughout ?"
+#       read yorn
+        
+#       case $yorn in 
+#       y) 
+#       TMODE=100
+#echo  " CP file (to run the program) is: "
+#read CP
+#rm -f $CP
+#       echo "Writing an executable 'cp' file........"
+#       echo "ldmapper1" $JOB $DATA $TERSE $PROLIX $TMODE >> $CP 
+#       chmod +x $CP
+#       ;;
+        
+#       n) 
+        ldmapper1 $JOB $DATA $TERSE $PROLIX $MODE 
+#       ;; 
+
+#       esac
+        MODE=0 
+        fi
+
+        if [ $MODE -eq 4 ]
+        then
+        echo "Construct an LDU map " 
+        echo  "Define input and output files" 
+        echo "  " 
+        echo  "Job file is: "
+	read JOB
+	echo  "Intermediate (input) file is: "
+	read DATA 
+	echo  "Map (output) file is: "
+	read  TERSE
+	echo  "Analysis (output) file is: "
+	read PROLIX
+        ldmapper1 $JOB $DATA $TERSE $PROLIX $MODE 
+        MODE=0 
+        fi
+        
+        if [ $MODE -eq 5 ]
+        then
+        echo "Add LDU locations to a genotype data file "
+        ldmapper1 $DATA $MODE 
+        MODE=0 
+        fi 
+
+        if [ $MODE -eq 6 ]
+        then
+        echo "Construct intermediate file from pooled counts "
+        echo  "Pooled count file name is: "
+	read DATA 
+        ldmapper1 $DATA $MODE 
+        MODE=0 
+        fi
+        
+        if [ $MODE -eq 7 ]
+        then  
+        echo  "Testing HWE for genotypes" 
+        echo "  " 
+	echo  "Genotype file is "
+	read FAM 
+	echo  "Prolix file is "
+	read PROLIX
+	echo  "CP file name "
+	read CP
+	rm -f $CP
+        echo "Writing an executable 'cp' file........"
+        echo "  "	
+        echo "betasnp1" $FAM $PROLIX 11 >> $CP
+        chmod +x $CP 
+        echo "Run this job (y/n) ?"
+        read run
+        case $run in
+        y) /bin/sh $CP ;;
+        esac 
+        MODE=0 
+        fi
+        
+        if [ $MODE -eq 8 ]
+        then
+        echo "Combine two intermediate files " 
+        echo  "Define input and output files" 
+        echo "  " 
+	echo  "Concatenated intermediate (input) file is: "
+	read DATA 
+	echo  "Combined intermediate (output) file is: "
+	read PROLIX
+        ldmapper1 $DATA $PROLIX $MODE 
+        MODE=0 
+        fi
+        
+done
+done
