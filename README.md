@@ -1,6 +1,6 @@
 # LDMAP
 
-Contact: [R.J.Pengelly@soton.ac.uk](mailto:r.j.pengelly@soton.ac.uk) or [A.R.Collins@soton.ac.uk](mailto:a.r.collins@soton.ac.uk)
+Contact: [R.J.Pengelly@soton.ac.uk](mailto:r.j.pengelly@soton.ac.uk) or [A.R.Collins@soton.ac.uk](mailto:a.r.collins@soton.ac.uk).
 
 Overview
 ========

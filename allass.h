@@ -1,10 +1,9 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#define MAX_LOCI 100000
+#define MAX_LOCI 1000000
 #define MAX_LINE 50000 
 #define IA 16807
 #define IM 2147483647
@@ -159,7 +158,7 @@ double g_df,g_V,g_ekeep,g_mkeep;
 /********************/
 char g_temp[MAX_LINE];
 char gg_temp[500];
-char terfile[20],intefile[20],datfile[20];
+char terfile[50],intefile[50],datfile[50];
 char g_loci[MAX_LOCI][20];
 char g_allloci[MAX_LOCI][20];
 

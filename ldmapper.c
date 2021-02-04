@@ -2,18 +2,24 @@
 #include "allass.h"
 int main(int argc, char *argv[])
 {
-char outputfile[20],jobfile[20], temp1[20],temp2[20];
+char outputfile[50],jobfile[20], temp1[20],temp2[20];
 /*This is the maximum number of intervals used:*/
 g_int=100;
 /*This is the maximum distance between pairs of SNPs used:*/
 g_max=500.;
-/*This is the Hardy-Wienberg cut off */
+/*This is the Hardy-Weinberg cut off */
 g_hwp=0.001;
 /*This is the MAF cut off */
 g_maf=0.05;
 
 g_finish=0;
 g_calls=0;
+
+if(argc != 8)
+	{
+	fprintf(stderr, "\nIncorrect number of options given \n\nExpected usage: ./ldmapper1 [input.tped] [intermediate.txt] [job] [out.ldmap] [out.log] [MAF] [HWE]\n\n");
+	return 1;
+	}
 
 strcpy(datfile,argv[1]);strcpy(intefile,argv[2]); strcpy(jobfile,argv[3]);strcpy(terfile,argv[4]);strcpy(outputfile,argv[5]);
 strcpy(temp1,argv[6]);strcpy(temp2,argv[7]);
