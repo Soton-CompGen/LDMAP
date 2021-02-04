@@ -5,7 +5,7 @@
 void locus_list()
 {
 int i,ii;
-double kb1,kb2,ldu1,ldu2,freq1,freq2;
+double kb1,kb2,ldu1,ldu2;
 abcdPtr abcd_p1;
 char locs[20];
 /*************GET THE LOCATIONS FOR ALL IN THE LOCUS LIST ***/
@@ -21,19 +21,17 @@ kb1=0;
 kb2=0;
 ldu1=0;
 ldu2=0;
-freq1=0;
-freq2=0;
 
 abcd_p1=abcdstartPtr;
 while(abcd_p1!=NULL)
 {
 for(i=0;i<20;i++)locs[i]='\0';
 for(i=0;i<20;i++) { 
-if(abcd_p1->locus[i]=='.')goto gogo4; strcpy(locs,abcd_p1->locus);kb1=abcd_p1->kb1;ldu1=abcd_p1->ldu1;freq1=abcd_p1->freq1;  }
+if(abcd_p1->locus[i]=='.')goto gogo4; strcpy(locs,abcd_p1->locus);kb1=abcd_p1->kb1;ldu1=abcd_p1->ldu1;}
 
 gogo4: for(ii=0;ii<g_nloci;ii++)
 {
-if(strcmp(g_loci[ii],locs)==0){g_location[ii][0]=ldu1;g_location[ii][1]=kb1;g_location[ii][2]=freq1; }
+if(strcmp(g_loci[ii],locs)==0){g_location[ii][0]=ldu1;g_location[ii][1]=kb1;}
 }
 abcd_p1=abcd_p1->nextPtr;
 }
@@ -42,10 +40,10 @@ abcd_p1=abcdstartPtr;
 while(abcd_p1!=NULL)
 {
 for(i=0;i<20;i++)locs[i]='\0';
-for(i=0;i<20;i++) { if(abcd_p1->locus2[i]=='.')goto gogo3; strcpy(locs,abcd_p1->locus2);kb2=abcd_p1->kb2;ldu2=abcd_p1->ldu2;freq2=abcd_p1->freq2;  }
+for(i=0;i<20;i++) { if(abcd_p1->locus2[i]=='.')goto gogo3; strcpy(locs,abcd_p1->locus2);kb2=abcd_p1->kb2;ldu2=abcd_p1->ldu2;}
 gogo3: for(ii=0;ii<g_nloci;ii++)
 {
-if(strcmp(g_loci[ii],locs)==0){g_location[ii][0]=ldu2;g_location[ii][1]=kb2;g_location[ii][2]=freq2;}
+if(strcmp(g_loci[ii],locs)==0){g_location[ii][0]=ldu2;g_location[ii][1]=kb2;}
 }
 abcd_p1=abcd_p1->nextPtr;
 }

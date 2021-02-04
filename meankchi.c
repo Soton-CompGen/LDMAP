@@ -6,8 +6,6 @@
 /*GET LOCUS SPECIFIC CHI SQUARE ETC */
 
          double lnl=0., xx,d,k,n=0,po,pe,E,L,M;
-         g_meanchi=0;
-         g_meank=0;
          g_abcd=abcdstartPtr;
          while(g_abcd!=NULL)
          {
@@ -27,7 +25,4 @@
              }
          g_abcd=g_abcd->nextPtr;
          }
-          g_meanchi=-2.*lnl;
-          g_meank=n;
-
            }

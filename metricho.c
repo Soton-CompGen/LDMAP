@@ -12,12 +12,6 @@ D=DDD;
 kd=n/(Q*(1.-Q)*R*(1.-R));
 /*The metrics and their information */
 
-
-/*Covariance */
-C=1.;
-g_cov=D/C;
-g_covi=(C*C)*kd; 
-
 /*Association rho */
 C=(Q*(1.-R));
 g_rho=D/C;

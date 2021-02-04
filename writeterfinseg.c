@@ -7,7 +7,7 @@ char flank1[20],copy1[20],flank2[20],copy2[20];
 int jth,ii;
 
 /* removed */
-if((output_ft=fopen(intefile,"w"))==NULL){ printf("\nCannot open map (output) file");exit(1);}
+if((output_ft=fopen(terfile,"w"))==NULL){ printf("\nCannot open map (output) file");exit(1);}
 fprintf(output_ft,"# ");
 fprintf(output_ft,"\n# LDU MAP PARAMETERS..............................");
 fprintf(output_ft,"\n# E= %10.6f  L= %10.6f  M=%10.6f -2*lnlk= %12.5f",global_e,global_l,global_m,g_lnl);

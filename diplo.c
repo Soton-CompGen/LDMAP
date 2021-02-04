@@ -5,21 +5,18 @@ void diplo(char *outputfile)
 /*Needs 9 counts from a 3*3 genotype table */
 char xflag=' ';
 int numy=0,nrec=0,times,flag,kk;
-double nd,kb,kb2,kb1,f11o,D,x11,x12,x21,x22,f11,f12,f21,f22,temp,sum,n11,n12,n13,n21,n22,n23,n31,n32,n33,Q,R;
+double kb,kb2,kb1,f11o,D,x11,x12,x21,x22,f11,f12,f21,f22,temp,sum,n11,n12,n13,n21,n22,n23,n31,n32,n33,Q,R;
 double a,b,c,d;
 output_f2=NULL;
-output_f3=NULL;
 
 if((output_f2=fopen(outputfile,"w"))==NULL)
    {printf("\nCannot open intermediate file\n");exit(1);} 
-/*hill.out file gives the haplotype counts A,B,C,D - can be used for pooling across
-populations*/
 g_aiPtr=aistartPtr;
 
 while(g_aiPtr!=NULL)
 {
-kb1=atof(g_aiPtr->ckb1);
-kb2=atof(g_aiPtr->ckb2);
+kb1=g_aiPtr->kb1;
+kb2=g_aiPtr->kb2;
 kb=fabs(kb1-kb2);
 sum=0;
 for(kk=0;kk<9;kk++){ if(kk<9)sum=sum+g_aiPtr->aitab[kk]; }
@@ -72,7 +69,6 @@ if(times<15000&&fabs(f11o-f11)>0.000000001) { f11o=f11; goto top; }
 /**********************************************/
 
 /*CHECK, GET f11 under E.M. algorithm*/
-nd=sum;
 numy++;
 /**********************************************/
 a=f11;
@@ -114,16 +110,13 @@ metricho(Q,R,sum,D);
 if(g_rho>1.0)g_rho=1.0;
 if(g_rho<0.0)g_rho=0.0;
 /***********************************/
-
 if(nrec>0)
 {
-fprintf(output_f2,"\n%-15s %-15s %10.3f %10.3f %12.10f %10.3f %8.2f %5.0f %12.10f %12.10f %12.10f max_int %6d max_kb %8.2f %12.10f %12.10f", 
-g_aiPtr->locus1,g_aiPtr->locus2,kb1,kb2,g_rho,g_rhoi,(g_rho*g_rho)*g_rhoi,sum,Q,R,D,g_int,g_max,g_aiPtr->freq1,g_aiPtr->freq2);
+fprintf(output_f2,"\n%-15s %-15s %10.3f %10.3f %12.10f %10.3f " , g_aiPtr->locus1,g_aiPtr->locus2,kb1,kb2,g_rho,g_rhoi);
 }
 if(nrec==0)
 {
-fprintf(output_f2,"%-15s %-15s %10.3f %10.3f %12.10f %10.3f %8.2f %5.0f %12.10f %12.10f %12.10f max_int %6d max_Kb %8.2f %12.10f %12.10f", 
-g_aiPtr->locus1,g_aiPtr->locus2,kb1,kb2,g_rho,g_rhoi,(g_rho*g_rho)*g_rhoi,sum,Q,R,D,g_int,g_max,g_aiPtr->freq1,g_aiPtr->freq2);
+fprintf(output_f2,"%-15s %-15s %10.3f %10.3f %12.10f %10.3f ", g_aiPtr->locus1,g_aiPtr->locus2,kb1,kb2,g_rho,g_rhoi);
 }
 
 nrec++;

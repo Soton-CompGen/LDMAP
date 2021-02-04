@@ -12,12 +12,12 @@ char buff[200];
 FILE *fp;
 abcdPtr abcd_p1;
 char locs[20],loc1[20],loc2[20];
-double f1,f2,chi,n,kb1,kb2,p,k;
+double chi,n,kb1,kb2,p,k;
 g_nloci=0;
 
 abcd_p1=NULL;
 abcdstartPtr=NULL;
-if((fp=fopen(datfile,"r"))==NULL){ printf("\nCannot open intermediate file for reading");exit(1);}
+if((fp=fopen(intefile,"r"))==NULL){ printf("\nCannot open intermediate file for reading");exit(1);}
 
 
 while(fgets(buff,200,fp)!=NULL)
@@ -60,29 +60,6 @@ for(i=0;i<20;i++)temp[i]='\0';
 j=0;
 for(i=68;i<78;i++){temp[j]=buff[i];j++;}
 k=atof(temp);
-
-for(i=0;i<20;i++)temp[i]='\0';
-j=0;
-for(i=79;i<87;i++){temp[j]=buff[i];j++;}
-chi=atof(temp);
-
-for(i=0;i<20;i++)temp[i]='\0';
-j=0;
-for(i=88;i<93;i++){temp[j]=buff[i];j++;}
-n=atof(temp);
-
-
-for(i=0;i<20;i++)temp[i]='\0';
-j=0;
-for(i=163;i<175;i++){temp[j]=buff[i];j++;}
-f1=atof(temp);
-
-for(i=0;i<20;i++)temp[i]='\0';
-j=0;
-for(i=177;i<188;i++){temp[j]=buff[i];j++;}
-f2=atof(temp);
-
-
 
 /*************************************************************************/
 /*************************************************************************/
@@ -128,9 +105,6 @@ abcd_p1->ldu2=0.;
 abcd_p1->kb1=kb1;
 abcd_p1->kb2=kb2;
 abcd_p1->kb=fabs(kb2-kb1);
-abcd_p1->chi=chi;
-abcd_p1->freq1=f1;
-abcd_p1->freq2=f2;
 abcd_p1->flag=1;
 }
 else
@@ -147,9 +121,6 @@ abcd_p1->ldu2=0.;
 abcd_p1->kb1=kb1;
 abcd_p1->kb2=kb2;
 abcd_p1->kb=fabs(kb2-kb1);
-abcd_p1->chi=chi;
-abcd_p1->freq1=f1;
-abcd_p1->freq2=f2;
 abcd_p1->flag=1;
 }
 

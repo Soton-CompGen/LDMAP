@@ -9,10 +9,6 @@ double big=9999999.99999,**temp, **y, d, *col;
 char blank[14];
 
 if(ldflag==2)return;
-
-g_seE=999.999;
-g_seM=999.999;
-g_seL=999.999;
 strcpy(blank,"            ");
 indx=ivector(1,n);
 col=dvector(1,n);
@@ -36,29 +32,24 @@ for(j=1; j<=n; j++)
 
 j=1;
 fprintf(output_f,"\n\nStdrd Errors:");
-if(g_iter[1]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){g_seE=sqrt(y[j][j]);fprintf(output_f,"%13.5f",sqrt(y[j][j]));j++;
+if(g_iter[1]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){fprintf(output_f,"%13.5f",sqrt(y[j][j]));j++;
                 }   
                 else
                 {
                 fprintf(output_f," %s",blank);
                 }
 
-if(g_iter[2]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){g_seL=sqrt(y[j][j]);fprintf(output_f," %13.5f",sqrt(y[j][j]));j++;}   
+if(g_iter[2]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){fprintf(output_f," %13.5f",sqrt(y[j][j]));j++;}   
                 else
                 {
                 fprintf(output_f,"  %s",blank);
                 }
-if(g_iter[3]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){g_seM=sqrt(y[j][j]);fprintf(output_f," %13.5f",sqrt(y[j][j]));j++;}   
+if(g_iter[3]==1&&(y[j][j]>=0.)&&(y[j][j]<big)){fprintf(output_f," %13.5f",sqrt(y[j][j]));j++;}   
                 else
                 {
                 fprintf(output_f,"  %s",blank);
                 }
-
-/*fprintf(output_f,"\n\n     Kel           Kem            Klm                                            ");
-fprintf(output_f,"\n%13.5f %13.5f %13.5f ",g_kel,g_kem,g_klm);
-*/
 
 fprintf(output_f,"\n\nN (Number of pairs)= %7d     Predicted L (Lp)= %13.5f",
 g_nki,sqrt(2./3.14159265)*(g_sumki2/g_nki)/(g_sumki/g_nki)); 
-
 }

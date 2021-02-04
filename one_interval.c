@@ -5,9 +5,7 @@ void one_interval(int ii, intsPtr intop,double *u, double *bigk, double *lnl )
 /*INPUT Malecot M and L, INPUT AND OUTPUT u,bigk,lnl*/
 /*GLOBAL - NEEDS TO BE PASSED = interv ARRAY + global_l, global_m, g_nloci*/
 
-/* double thee,u1,bigk1,lnl1=0.,term0,term,l,m,ed,dd,pexp,k,p; */
 double u1,bigk1,lnl1=0.,term0,term,l,m,ed,dd,pexp,k,p;
-/*int jj,left,right; */
 
 u1=0.;
 bigk1=0.;

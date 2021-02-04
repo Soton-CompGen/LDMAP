@@ -13,7 +13,7 @@ fprintf(output_f,"\n------------------------------------------------------------
 fprintf(output_f,"\nIT   -2lnlk          E             L             M             S            Kee            Kll            Kmm            Kss          ");  
 fflush(output_f);
 }
-g_kel=0.; g_kem=0.; g_ket=0.; g_kes=0.; g_klm=0.; g_klt=0.; g_kls=0.; g_kms=0.; g_kts=0.;
+g_kel=0.; g_kem=0.; g_klm=0.; 
 n=0;
 global_fin=0;
 

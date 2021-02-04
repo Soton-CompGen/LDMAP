@@ -5,7 +5,6 @@
 void segments()
 {
 /*READ IN A PORTION OF AN INT FILE - FOR SEGMENTAL MAP CONSTRUCTION */
-char temp[10];
 int j,i;
 int nseg=-1,bign;
 int overlap=-1,pos,segsize,a,b,ifin=0;
@@ -16,8 +15,8 @@ the segmental construction of an ld map*/
 
 printf("\n....Compiling locus list....");
 intfile4();
-printf("\nThe input map has %d loci in total ",g_nallloci);
-fprintf(output_f,"\nThe input map has %d loci in total ",g_nallloci);
+printf("\nThe map has %d loci in total ",g_nallloci);
+fprintf(output_f,"\nThe map has %d loci in total ",g_nallloci);
 
 /*!!!!!!!!!!!!!!!!!!!!*/
 /*MODIFY FOR IRIDIS - JULY 09 */
@@ -28,14 +27,6 @@ if(nseg<1)nseg=1;
 fprintf(output_f,"\nCompiling the map in %d segments ",nseg);
 printf("\nCompiling the map in %d segments ",nseg);
 
-/*
-printf("\nFor assembling the LD map how many segments are required ?"); 
-scanf("%s", temp);
-nseg=atoi(temp);
-*/
-
-
-
 for(i=0;i<g_nallloci;i++) { g_alllocation[i][0]=large; }
 
 bign=g_nallloci;
@@ -44,13 +35,6 @@ segsize=segsize+1; /*ADD 1 TO MANAGE ROUNDING */
 
 printf("\nThis has approximately %d loci per segment",segsize-1);
 fprintf(output_f,"\nThis has approximately %d loci per segment",segsize-1);
-
-
-/*
-printf("\nWhat overlap is required ? "); 
-scanf("%s", temp);
-overlap=atoi(temp);
-*/
 
 overlap=25;
 
@@ -131,8 +115,6 @@ for(i=0;i<g_nallloci;i++)
 /*NOW DEAL WITH THE NON OVERLAP SECTION WHICH FOLLOWS - NEED A SECOND SMALL OFFSET TO ACCOUNT
 FOR SMALL DISCREPANCIES IN SCALES IN THE OVERLAP SECTION - MAY BE NEGATIVE*/
 offset=big1-big2;
-/*fprintf(output_f,"\nSECOND OFFSET = %f  big1 = %f big2 = %f ",offset,big1,big2);
-*/
 
 for(i=0;i<g_nallloci;i++)
   {

@@ -4,9 +4,8 @@ void multallele()
 {
 /*SET UP 9 CELL TABLES FOR DIPLOTYPE DATA (ASSOCIATION) -FOR SNPS ONLY */
 /*SNPS MUST BE CODED 1,2 */
-double diff,kb,kb1,kb2,sum,maxkb;
-char temp[20];
-int theint,i1,i2,idiff,N,j,numg,i,n11,n12,n13;
+double diff,kb1,kb2,sum,maxkb;
+int theint,i1,i2,idiff,N,j,i,n11,n12,n13;
 int n21,n22,n23;
 int n31,n32,n33;
 pedPtr ped1;
@@ -14,6 +13,7 @@ mapPtr2 map1,map2;
 
 
 maxkb=g_max;
+/*
 printf("\n\nThe maximum distance between a pair of SNPs to be used is: %10.4f kb, do you wish to change this? (y/n) ",maxkb); 
 scanf("%s",temp);
 if(temp[0]=='y')
@@ -23,8 +23,9 @@ scanf("%s",temp);
 maxkb=atof(temp);
 g_max=maxkb;
 }
-
+*/
 theint=g_int;
+/*
 printf("\nThe maximum number of intervals between pairs of SNPs to be used is: %d, do you wish to change this? (y/n) ",theint); 
 scanf("%s",temp);
 if(temp[0]=='y')
@@ -34,6 +35,7 @@ scanf("%s",temp);
 theint=atoi(temp);
 g_int=theint;
 }
+*/
 /*******************/
 /*******************/
 i=0;
@@ -46,34 +48,6 @@ map1=map1->nextPtr;
 }
 /*******************/
 /*******************/
-
-
-ped1=ped_startPtr;
-numg=ped1->numg;
-      
-/************************************************************************/
-/************************************************************************/
-
-fprintf(output_f3,"\n\n\nNumber of loci =%d ",numg+1);
-fprintf(output_f3,"\n------------------------------------------------------------------------------------------------------------------------"); 
-
-fprintf(output_f3,"\n(1111,1-4) ");
-fprintf(output_f3,"\n(1112,6-9) ");
-fprintf(output_f3,"\n(1122,11-14) ");
-fprintf(output_f3,"\n(1211,16-19) ");
-fprintf(output_f3,"\n(1212,21-24) ");
-fprintf(output_f3,"\n(1222,26-29) ");
-fprintf(output_f3,"\n(2211,31-34) ");
-fprintf(output_f3,"\n(2221,36-39) ");
-fprintf(output_f3,"\n(2222,41-44) ");
-fprintf(output_f3,"\n(N,46-49) ");
-fprintf(output_f3,"\n(locus1,52-63) ");
-fprintf(output_f3,"\n(locus2,69-80) ");
-fprintf(output_f3,"\n(kb1,86-97) ");
-fprintf(output_f3,"\n(kb2,103-114) ");
-fprintf(output_f3,"\n(freq1,120-131) ");
-fprintf(output_f3,"\n(freq2,134-145) ");
-fprintf(output_f3,"\n------------------------------------------------------------------------------------------------------------------------"); 
 /************************************/
 i=0;
 map1=map_startPtr2;
@@ -84,39 +58,22 @@ j=i+1;
 map2=map1->nextPtr;
     while(map2!=NULL) 
     {
-
-
-
-kb1=map1->kb;
-kb2=map2->kb;
-i2=map2->order;
-
-diff=fabs(kb1-kb2);
-if(diff>maxkb)goto skip;
-
-idiff=abs(i1-i2);
-
-
-if(idiff>theint+1)goto skip;
+     kb1=map1->kb;
+     kb2=map2->kb;
+     i2=map2->order;
+     diff=fabs(kb1-kb2);
+     if(diff>maxkb)goto skip;
+     idiff=abs(i1-i2);
+     if(idiff>theint+1)goto skip;
 /************************************************************************/
 /*THIS SECTION REFERS TO A PAIR OF LOCI **/
 /*FOR THIS PAIR HAVE TO LOOK AT EACH ALLELE COMBINATION */
 /************************************************************************/
-n11=0;
-n12=0;
-n13=0;
-n21=0;
-n22=0;
-n23=0;
-n31=0;
-n32=0;
-n33=0;
+n11=0; n12=0; n13=0; n21=0; n22=0; n23=0; n31=0; n32=0; n33=0;
 ped1=ped_startPtr;
 while(ped1!=NULL)   
   {
-   if(ped1->N==999)ped1->N=1;  
-   if(ped1->N==0)ped1->N=1;  
-   N=ped1->N; 
+   N=1; 
    if(ped1->GEN[i][0]!=0&&ped1->GEN[i][1]!=0&&ped1->GEN[j][0]!=0&&ped1->GEN[j][1]!=0)
     {
     if((ped1->GEN[i][0]==1)&&(ped1->GEN[i][1]==1))
@@ -159,17 +116,19 @@ sum=n11+n12+n13+n21+n22+n23+n31+n32+n33;
 
 kb1=map1->kb;
 kb2=map2->kb;
-kb=fabs(kb1-kb2);
-map1->locus[13]='\0';
-map2->locus[13]='\0';
 if(sum>0.)
 {
-if(map1->freq>0.05&&map2->freq>0.05) 
+/*Select pairs of loci with sample MAF >0.05 for both*/
+
+if(map1->chi>g_hwp&&map2->chi>g_hwp)
+{ 
+if(map1->freq>g_maf&&map2->freq>g_maf) 
 {
-fprintf(output_f3,"\n%4d %4d %4d %4d %4d %4d %4d %4d %4d ",n11,n12,n13,n21,n22,n23,n31,n32,n33);
-fprintf(output_f3,"%4d  %12s     %12s     %12.4f     %12.4f     %12.10f  %12.10f", 
-n11+n12+n13+n21+n22+n23+ n31+n32+n33,map1->locus,map2->locus,kb1,kb2,map1->freq,map2->freq);
+fill_gai(n11,n12,n13,n21,n22,n23,n31,n32,n33,kb1,kb2,map1->locus, map2->locus, map1->freq, map2->freq);
 }
+}
+
+
 } 
 skip:map2=map2->nextPtr;
    j++; 
@@ -177,7 +136,5 @@ skip:map2=map2->nextPtr;
 i++;
 map1=map1->nextPtr;
 }
-
-
 
 }

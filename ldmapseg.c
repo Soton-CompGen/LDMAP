@@ -14,14 +14,10 @@ abcdPtr abcd_p1;
 hugsPtr hug1;
 intsPtr intop;
 int ntimes=0,maxit,ix,i,jth,j,ii;
-/* set the vv variables..*/ 
-/* double vved_old,vved_new; */
  double vvthee,vved,vvdd;
 int vvjj,vvleft,vvright;
 intsPtr vvintop;
 hugsPtr vvhug1;
-
-/** aman added   0926 ***/
 
 g_estimatel=0;
 g_initial=0;
@@ -29,7 +25,6 @@ conv=0.1;
 minkb=large;
 g_best=large;
 maxit=20000;
-ldflag2=1;
 itlast=0; iteast=0; itmast=0;
 useld=0;
 intervals=g_int;
@@ -39,11 +34,10 @@ stope=1;
 if(path==0)fprintf(output_f,"\n\n\n******** Fitting pairwise data to kb map ******** ");
 if(path==1)fprintf(output_f,"\n\n\n******** Creating an LD map from a Kb map ******** ");
 if(path==2)fprintf(output_f,"\n\n\n******** Fitting pairwise data to LD map ******** ");
-if(path==3)fprintf(output_f,"\n\n\n******** Creating an LD map from an existing LD map ******** ");
 /******************************************************************************************************/
 start1=time(NULL);
 if(path==2)istop=1;
-if((path==2)||(path==3)) { useld=1; directmap2();}
+if((path==2)) { useld=1; directmap2();}
 
 /*IF NEEDED INSERT EXISTING LDU MAP AT THIS POINT*/
 if(useld==1)
@@ -101,9 +95,6 @@ orig_e=global_e;
 swept=1./orig_e;
 
 /****************************************************************************************************/
-/*
-reorder();
-*/
 /****************************************************************************************************/
 
 maxkb=maxkb-minkb;
@@ -119,7 +110,7 @@ fprintf(output_f,"\n\nN(number of pairs)=%15d  m(number of SNPs)=%15d df=%14.1f 
 fflush(output_f);
 if(path==0)return;
 
-if(istop==1) { /*printmap();*/ goto fin; }
+if(istop==1) { goto fin; }
 
 /****************************************************************************************************/
 jth=0;
@@ -154,8 +145,6 @@ for(ii=0;ii<g_nloci;ii++)
    }
 }
 
-if(path==3)printinputmap();
-
 fprintf(output_f,"\n\n\n*****   CONSTRUCTING LDU MAP.................\n ");
 if(path==1)
 {
@@ -164,17 +153,6 @@ quicklike(global_e,global_l,global_m);
 fprintf(output_f,"\n\n\nIter     E          L          M       n_holes   LDU_length      -2lnlk"); 
 fprintf(output_f,"\n     %10.6f %10.6f %10.6f      %16.8f %12.5f ",
  global_e,global_l,global_m,maxkb*global_e,g_lnl);
-}
-
-if(path==3)
-{
-if(g_estimatel==0)global_l=g_pred;
-quicklike(global_e,global_l,global_m);
-
-fprintf(output_f,"\n\n\nIter     E          L          M       n_holes   LDU_length      -2lnlk"); 
-fprintf(output_f,
-"\n     %10.6f %10.6f %10.6f                       %12.5f ", 
-global_e,global_l,global_m,g_lnl);
 }
 
 g_startlnl=g_lnl;
@@ -218,7 +196,6 @@ hug1=bigstart;
 ii=0;
 allldu=0;
 
-/********** aman added ...computing the first value of ed  0925  *************/
 /*THIS IS NOT LAYERED ANY MORE */  
 
 vvhug1=bigstart;
