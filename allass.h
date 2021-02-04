@@ -1,10 +1,9 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#define MAX_LOCI 100000
+#define MAX_LOCI 1000000
 #define MAX_LINE 50000 
 #define IA 16807
 #define IM 2147483647
