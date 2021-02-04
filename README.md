@@ -122,24 +122,18 @@ Running LDMAP
 -------------
 
 #### 
+LDMAP is run using the following syntax:
 
-Interaction with the core LDMAP binary, `ldmapper1` is most user friendly through the shell wrapper script `ldmap`. Running `ldmap` brings up the following menu:
+`./ldmapper1 [input.tped] [intermediate.txt] [job] [out.ldmap] [out.log] [MAF] [HWE]`
 
-     L D M A P        
-    Construction of linkage disequilibrium maps from diplotype data...
-     VERSION 2.0 November 2014  
-      
-      
-    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Enter number to select function 
-        1             Construct LD map in segments from intermediate file  
-        2             quit      
+where 
 
-#### 
-
-The wrapper script `ldmap` works by requesting parameters from the user, and writing a small executable job files (`.cp`), which then runs `ldmapper1` with these desired parameters when executed. If automation of processes is desired, the required commands may be entered into a `.cp` file directly. An example `.cp` file may look like:
-`./ldmapper1 input.tped int job example.map example.log 0.05 0.001`
-where `int` is a temporary file used in LD map generation, `job` is a file containing run parameters (eponymous file included with source code), `example.map` will contain the final LD map, and `example.log` will contain detailed run information, `0.05` is the desired AF cutoff, and `0.001` is the desired HWE cutoff.
+`[intermediate.txt]` is an intermediate file that will be created;\
+`[job]` is an existing file containing run parameters (included, does not generally need edits);\
+`[out.ldmap]` will be created and contain the final LD map;\
+`[out.log]` will be created and contain detailed run information;\
+`[MAF]` is the desired minor allele frequency cutoff (suggest 0.05);\
+`[HWE]` is the desired Hardy-Weinberg equilibrium deviation p-value cutoff (Suggest 0.001).
 
 Output files
 ------------
