@@ -7,7 +7,7 @@ char outputfile[20],jobfile[20], temp1[20],temp2[20];
 g_int=100;
 /*This is the maximum distance between pairs of SNPs used:*/
 g_max=500.;
-/*This is the Hardy-Wienberg cut off */
+/*This is the Hardy-Weinberg cut off */
 g_hwp=0.001;
 /*This is the MAF cut off */
 g_maf=0.05;

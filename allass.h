@@ -158,7 +158,7 @@ double g_df,g_V,g_ekeep,g_mkeep;
 /********************/
 char g_temp[MAX_LINE];
 char gg_temp[500];
-char terfile[20],intefile[20],datfile[20];
+char terfile[50],intefile[50],datfile[50];
 char g_loci[MAX_LOCI][20];
 char g_allloci[MAX_LOCI][20];
 
