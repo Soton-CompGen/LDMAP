@@ -15,6 +15,12 @@ g_maf=0.05;
 g_finish=0;
 g_calls=0;
 
+if(argc != 8)
+	{
+	fprintf(stderr, "\nIncorrect number of options given \n\nExpected usage: ./ldmapper1 [input.tped] [intermediate.txt] [job] [out.ldmap] [out.log] [MAF] [HWE]\n\n");
+	return 1;
+	}
+
 strcpy(datfile,argv[1]);strcpy(intefile,argv[2]); strcpy(jobfile,argv[3]);strcpy(terfile,argv[4]);strcpy(outputfile,argv[5]);
 strcpy(temp1,argv[6]);strcpy(temp2,argv[7]);
 
