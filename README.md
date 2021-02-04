@@ -7,15 +7,15 @@ Overview
 
 #### 
 
-LDMAP is intended to be used for the generation of linkage disequilibrium (LD) maps from genotype data. For a description of the scientific basis of LDMAP, see Kuo *et al.*, 2007 . In brief, LDMAP generates a cumulative map of LD distances between markers, based upon the Mal<span>é</span>cot model of separation by distance:
+LDMAP is intended to be used for the generation of linkage disequilibrium (LD) maps from genotype data. For a description of the scientific basis of LDMAP, see Kuo *et al.*, 2007 . In brief, LDMAP generates a cumulative map of LD distances between markers, based upon the Mal<span>é</span>cot-Morton model of separation by distance:
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Crho%20%3D%20%5Cleft(1-L%5Cright)Me%5E%7B-%5Cepsilon%20d%7D%2BL">
 
-where \(\rho\) is the empirically observed correlation between two markers in a population, \(L\) is the component of \(\rho\) not due to LD, but due to confounding factors such as recent founder effects, \(M\) is the anticipated linkage between the two markers at 0 distance, \(\epsilon\) is the rate of decline in the association between the markers and \(d\) is the physical distance between the markers .
+where *&rho;* is the empirically observed correlation between two markers in a population, *L* is the component of *&rho;* not due to LD, but due to confounding factors such as recent founder effects, *M* is the anticipated linkage between the two markers at 0 distance, *&epsilon;* is the rate of decline in the association between the markers and *d* is the physical distance between the markers.
 
 #### 
 
-The product generated utilising the Mal<span>é</span>cot model are maps in cumulative linkage disequilibrium units (LDU), which are broadly analogous to a population form of centimorgans; these \(\text{LDU} = \epsilon d\). It should be noted that LDMAP is reference agnostic, not directly referring to a reference assembly to run; this provides flexibility to apply LDMAP to any species and using non-standard genome assemblies.
+The product generated utilising the Mal<span>é</span>cot-Morton model are maps in cumulative linkage disequilibrium units (LDU), which are broadly analogous to a population form of centimorgans; these LDU are calculated as *&epsilon;d* for each interval. It should be noted that LDMAP is reference agnostic, not directly referring to a reference assembly to run; this provides flexibility to apply LDMAP to any species and using non-standard genome assemblies.
 
 Implementation
 ==============
@@ -44,7 +44,7 @@ The required sample size is strongly dependant upon the population (and species)
 
 ### Sample homogeneity
 
-Outliers from a population are likely to skew the resulting maps. As such, we recommend that multidimensional scaling (e.g. as implemented in PLINK ), or similar, be performed in order to identify and exclude outliers. Additionally, closely related samples must be excluded.
+Outliers from a population are likely to skew the resulting maps. As such, we recommend that multidimensional scaling (e.g. as implemented in PLINK), or similar, be performed in order to identify and exclude outliers. Additionally, closely related samples must be excluded.
 
 ### Sample genders
 
@@ -61,7 +61,7 @@ Reference genome assembly
 
 #### 
 
-The quality of your genome assembly can have significant impact upon the quality of your final maps. Incorrect ordering of contigs and other erroneous regions may lead to artefacts. Known low quality regions should be masked, or at least interpreted with due care. It is of note that artefacts arising from incorrect assembly orders have been shown to useful in the determination of the correct assembly order out of multiple possibilities .
+The quality of your genome assembly can have significant impact upon the quality of your final maps. Incorrect ordering of contigs and other erroneous regions may lead to artefacts. Known low quality regions should be masked, or at least interpreted with due care. It is of note that artefacts arising from incorrect assembly orders have been shown to useful in the determination of the correct assembly order out of multiple possibilities.
 
 Marker selection
 ----------------
@@ -83,7 +83,7 @@ Genotype file format
 
 #### 
 
-The input genotype file format for LDMAP is the numeric `.tped` format as used by PLINK (described at <http://pngu.mgh.harvard.edu/~purcell/plink/data.shtml#tr>)  for a single chromosome, or segment of.. An example file of three individuals for five diploid loci is shown below:
+The input genotype file format for LDMAP is the numeric `.tped` format as used by PLINK (described at <http://pngu.mgh.harvard.edu/~purcell/plink/data.shtml#tr>) for a single chromosome, or contiguous segment of. An example file of three individuals for five diploid loci is shown below:
 
     1 snp1 0 5000653 1 1 2 2 1 2 
     1 snp2 0 5000837 2 2 0 0 1 2
@@ -95,27 +95,25 @@ The input genotype file format for LDMAP is the numeric `.tped` format as used b
 
 In the `.tped` format, the space delimited columns should contain:
 
-1.  Chromosome (non essential)
-
-2.  Marker name (non essential)
-
-3.  Genetic position (e.g. cM, non essential)
-
-4.  Physical position (in bp)
-
+1.  Chromosome\*
+2.  Marker name\*
+3.  Genetic position\*
+4.  Base pair position
 5.  onwards - genotypes at this loci across population, two digits for each diploid individual
-
     -   0 - missing genotypes
-
     -   1 - reference genotypes
-
     -   2 - alternate genotypes
+    
+\* These columns need not be populated, but columns must still be maintained.
+
 
 #### 
 
-To generate the required `.tped` files using PLINK, the command:
+To generate the required `.tped` files using PLINK, the following command can be used:
+
 `./plink --file [source] --recode12 --transpose --out [name]`
-should be used. **N.B.** `.tped` file names should be \(\leq 15\) bytes in length; excessively long file names will result in errors in the first stage of file processing using LDMAP.
+
+**N.B.** `.tped` file names should be <15 bytes in length; excessively long file names will result in errors in the first stage of file processing using LDMAP.
 
 Generation of LD maps
 =====================
