@@ -113,7 +113,7 @@ To generate the required `.tped` files using PLINK, the following command can be
 
 `./plink --file [source] --recode12 --transpose --out [name]`
 
-**N.B.** `.tped` file names should be <15 bytes in length; excessively long file names will result in errors in the first stage of file processing using LDMAP.
+**N.B.** `.tped` file names should be less than 15 bytes in length; excessively long file names will result in errors in the first stage of file processing using LDMAP.
 
 Generation of LD maps
 =====================
@@ -128,6 +128,7 @@ LDMAP is run using the following syntax:
 
 where 
 
+`[input.tped]` is the existing TPED file as described above;\
 `[intermediate.txt]` is an intermediate file that will be created;\
 `[job]` is an existing file containing run parameters (included, does not generally need edits);\
 `[out.ldmap]` will be created and contain the final LD map;\
@@ -135,15 +136,17 @@ where
 `[MAF]` is the desired minor allele frequency cutoff (suggest 0.05);\
 `[HWE]` is the desired Hardy-Weinberg equilibrium deviation p-value cutoff (Suggest 0.001).
 
+All output files must be unique where running parallel instances of the program.
+
 Output files
 ------------
 
 #### 
 
-Generation of the final LD map is a computationally intensive process, iteratively fitting values for the unknown variables \(L\), \(M\) and \(\epsilon\) to the Mal<span>é</span>cot model. Utilisation of parallel computing for this stage will greatly increase throughput for LD map generation. The final `.map` file format is shown below:
+Generation of the final LD map is a computationally intensive process, iteratively fitting values for the unknown variables *L*, *M* and *&epsilon;* to the Mal<span>é</span>cot-Morton model. Utilisation of parallel computing for this stage will greatly increase throughput for LD map generation. The final `.ldmap` file format is shown below:
 
     #Reading the intermediate data file: example.int 
-    #Writing the map file: example.map lnlk=  53850.17171
+    #Writing the map file: example.ldmap lnlk=  53850.17171
     # N(number of pairs)= 1194501  m(number of SNPs)= 11938 df= 1194499.0 V(error variance)= 0.04508
     #                                                                           
     #           Locus     kb map       LDU map                                 
@@ -156,7 +159,7 @@ Generation of the final LD map is a computationally intensive process, iterative
 
 #### 
 
-For convenience, the Perl script `ldmap_to_csv.pl` is provided to convert the `.map` file to CSV format for downstream analyses if desired.
+For convenience, the Perl script `ldmap_to_csv.pl` is provided to convert the `.ldmap` file to CSV format for downstream analyses if desired.
 
 
 Bibliography
