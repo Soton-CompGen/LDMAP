@@ -6,7 +6,7 @@ SOURCES= \
 PROGRAM= ldmapper1 
 
 # gcc can take "-Wall -Werror" for checking
-CFLAGS= -g -O -Wall -Werror
+CFLAGS= -g -O
 CPPFLAGS= $(INCLUDEDIRS)
 LDFLAGS=
 LINTFLAGS=
