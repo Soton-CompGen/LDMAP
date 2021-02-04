@@ -9,7 +9,7 @@ Overview
 
 LDMAP is intended to be used for the generation of linkage disequilibrium (LD) maps from genotype data. For a description of the scientific basis of LDMAP, see Kuo *et al.*, 2007 . In brief, LDMAP generates a cumulative map of LD distances between markers, based upon the Mal<span>é</span>cot model of separation by distance:
 
-\[\rho = \left(1-L\right)Me^{-\epsilon d}+L\]
+<img src="https://render.githubusercontent.com/render/math?math=%5Crho%20%3D%20%5Cleft(1-L%5Cright)Me%5E%7B-%5Cepsilon%20d%7D%2BL">
 
 where \(\rho\) is the empirically observed correlation between two markers in a population, \(L\) is the component of \(\rho\) not due to LD, but due to confounding factors such as recent founder effects, \(M\) is the anticipated linkage between the two markers at 0 distance, \(\epsilon\) is the rate of decline in the association between the markers and \(d\) is the physical distance between the markers .
 
@@ -165,3 +165,14 @@ Generation of the final LD map is a computationally intensive process, iterative
 #### 
 
 For convenience, the Perl script `ldmap_to_csv.pl` is provided to convert the `.map` file to CSV format for downstream analyses if desired.
+
+
+Bibliography
+------------
+S. Ennis, A. Collins, W. Tapper, A. Murray, J. MacPherson, and N. Morton. “Allelic association discriminates draft orders”. In: Ann Hum Genet 65.5, pp. 503–504.
+
+T. - Y. Kuo, W. Lau, and A. R. Collins. “LDMAP: the construction of high-resolution linkage disequilibrium maps of the human genome”. In: Linkage Disequilibrium and Association Mapping. Ed. by A. R. Collins. Vol. 376. Methods in Molecular Biology. Humana Press, 2007, pp. 47–57. doi: 10.1007/978-1-59745-389-9_4.
+
+S. Purcell, B. Neale, K. Todd-Brown, L. Thomas, M. A. Ferreira, D. Bender, J. Maller, P. Sklar, P. I. de Bakker, M. J. Daly, and P. C. Sham. “PLINK: a tool set for whole-genome association and population-based linkage analyses”. In: Am J Hum Genet 81.3 (2007), pp. 559–75. doi: 10.1086/519795.
+
+W. Tapper, A. Collins, J. Gibson, N. Maniatis, S. Ennis, and N. E. Morton. “A map of the human genome in linkage disequilibrium units”. In: Proc Natl Acad Sci U S A 102.33 (2005), pp. 11835–9. doi: 10.1073/pnas.0505262102.
