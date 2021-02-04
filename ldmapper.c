@@ -2,7 +2,7 @@
 #include "allass.h"
 int main(int argc, char *argv[])
 {
-char outputfile[20],jobfile[20], temp1[20],temp2[20];
+char outputfile[50],jobfile[20], temp1[20],temp2[20];
 /*This is the maximum number of intervals used:*/
 g_int=100;
 /*This is the maximum distance between pairs of SNPs used:*/
