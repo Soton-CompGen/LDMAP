@@ -2,8 +2,6 @@
 use strict;
 use warnings;
 
-## Modified 22Jan14 - RJP NOW FUNCTIONAL!!
-
 ## Takes file list of split LDMAP outputs, merges contigs together, averaging along the overlapping segment. Must use CSV input.
 ## Calling input "perl contig_stitch.pl {list file} {overlap} {trim}"
 
