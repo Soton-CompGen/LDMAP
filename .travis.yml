@@ -1,2 +1,6 @@
-language: c
-script: make
+language: 
+- c
+- perl
+script: 
+- make
+- find . -name \*pl -exec perl -c {} \;
