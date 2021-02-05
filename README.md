@@ -87,7 +87,7 @@ Genotype file format
 
 #### 
 
-The input genotype file format for LDMAP is the numeric `.tped` format as used by PLINK (described at <http://pngu.mgh.harvard.edu/~purcell/plink/data.shtml#tr>) for a single chromosome, or contiguous segment of. An example file of three individuals for five diploid loci is shown below:
+The input genotype file format for LDMAP is the numeric `.tped` format as used by PLINK (described at <https://zzz.bwh.harvard.edu/plink/data.shtml#tr>) for a single chromosome, or contiguous segment of. An example file of three individuals for five diploid loci is shown below:
 
     1 snp1 0 5000653 1 1 2 2 1 2 
     1 snp2 0 5000837 2 2 0 0 1 2
