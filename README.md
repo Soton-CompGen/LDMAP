@@ -1,6 +1,8 @@
 # LDMAP
 
 [![Build Status](https://travis-ci.com/Soton-CompGen/LDMAP.svg?branch=master)](https://travis-ci.com/Soton-CompGen/LDMAP)
+![GitHub](https://img.shields.io/github/license/Soton-CompGen/LDMAP)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Soton-CompGen/LDMAP?include_prereleases)
 
 Contact: [R.J.Pengelly@soton.ac.uk](mailto:r.j.pengelly@soton.ac.uk) or [A.R.Collins@soton.ac.uk](mailto:a.r.collins@soton.ac.uk).
 
