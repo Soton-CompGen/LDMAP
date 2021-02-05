@@ -1,6 +1,9 @@
 language: 
 - c
 - perl
+os:
+- linux
+- osx
 script: 
 - make
 - find . -name \*pl -exec perl -c {} \;
