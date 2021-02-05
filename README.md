@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/Soton-CompGen/LDMAP.svg?branch=master)](https://travis-ci.com/Soton-CompGen/LDMAP)
 # LDMAP
 
 Contact: [R.J.Pengelly@soton.ac.uk](mailto:r.j.pengelly@soton.ac.uk) or [A.R.Collins@soton.ac.uk](mailto:a.r.collins@soton.ac.uk).
