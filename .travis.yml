@@ -7,4 +7,4 @@ os:
 script: 
 - make
 - find . -name \*pl -exec perl -c {} \;
-- cd TEST_DATA; ./run_test
+- cd TEST_DATA; ./run_test.sh
