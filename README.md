@@ -26,7 +26,7 @@ Implementation
 
 #### 
 
-The software is predominantly implemented in C, with accessory shell and Perl scripts. It is intended for use in Linux environment, though alternative platforms may work, the software has not been designed or tested on these. LDMAP should be compiled on your system prior to use. A makefile is provided to facilitate this, allowing compilation using just the `make` command; remove all existing `*.o` files prior to compilation to ensure a fresh build.
+The software is predominantly implemented in C, with accessory shell and Perl scripts. It is intended for use in Linux environment, though alternative platforms may work, the software has not been designed or tested on these. LDMAP should be compiled on your system prior to use. A makefile is provided to facilitate this, allowing compilation using just the `make` command; remove all existing `*.o` files (`make clean`) prior to compilation to ensure a fresh build.
 
 #### 
 
@@ -128,7 +128,7 @@ Running LDMAP
 #### 
 LDMAP is run using the following syntax:
 
-`./ldmapper1 [input.tped] [intermediate.txt] [job] [out.ldmap] [out.log] [MAF] [HWE]`
+`./ldmap [input.tped] [intermediate.txt] [job] [out.ldmap] [out.log] [MAF] [HWE]`
 
 where 
 

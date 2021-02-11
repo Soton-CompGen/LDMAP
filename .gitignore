@@ -1,2 +1,5 @@
 *.o
 ldmap
+*.int
+*.ldmap
+*.log
