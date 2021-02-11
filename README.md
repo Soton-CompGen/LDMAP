@@ -11,7 +11,7 @@ Overview
 
 #### 
 
-LDMAP is intended to be used for the generation of linkage disequilibrium (LD) maps from genotype data. For a description of the scientific basis of LDMAP, see Kuo *et al.*, 2007 . In brief, LDMAP generates a cumulative map of LD distances between markers, based upon the Mal<span>é</span>cot-Morton model of separation by distance:
+LDMAP is intended to be used for the generation of linkage disequilibrium (LD) maps from genotype data. For a description of the scientific basis of LDMAP, see Kuo *et al.*, 2007. In brief, LDMAP generates a cumulative map of LD distances between markers, based upon the Mal<span>é</span>cot-Morton model of separation by distance:
 
 <img src="https://render.githubusercontent.com/render/math?math=%5Crho%20%3D%20%5Cleft(1-L%5Cright)Me%5E%7B-%5Cepsilon%20d%7D%2BL">
 
