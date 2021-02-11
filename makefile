@@ -46,7 +46,6 @@ SOURCES = \
 
 PROGRAM = ldmap
 
-# gcc can take "-Wall -Werror" for checking
 CFLAGS = -g -O
 CPPFLAGS = $(INCLUDEDIRS)
 LDFLAGS =
