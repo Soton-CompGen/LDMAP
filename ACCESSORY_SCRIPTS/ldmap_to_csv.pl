@@ -1,6 +1,7 @@
 use warnings; use strict;
 
 ## Script to convert LDmap output  to CSV
+## Usage: perl ldmap_to_csv.pl [LDMAP file]
 ## RJPengelly, 2014, r.j.pengelly@soton.ac.uk
 
 open FILE, $ARGV[0];
